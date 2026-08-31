@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Always show Instagram and Email regardless
     const emailPill = `
-      <a href="mailto:${ARTIST_EMAIL}" class="social-pill" title="Send Email" style="background:rgba(194,94,62,0.1);color:#C25E3E;border-color:rgba(194,94,62,0.2);">
+      <a href="mailto:${ARTIST_EMAIL}" class="social-pill" title="Send Email" onclick="event.preventDefault(); window.openEmailLauncher('Inquiry for Vani Karaikta', 'Hi Vani,\n\nI love your artwork and would like to connect with you.');" style="background:rgba(194,94,62,0.1);color:#C25E3E;border-color:rgba(194,94,62,0.2);cursor:pointer;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <span>Email</span>
       </a>`;
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <p class="platform-desc">Commission a custom painting, ask about artwork availability, or reach out for collaborations and exhibitions.</p>
-        <a href="mailto:${ARTIST_EMAIL}" class="btn btn-primary" style="width:100%;">Open Email Draft →</a>
+        <a href="mailto:${ARTIST_EMAIL}" class="btn btn-primary" style="width:100%;" onclick="event.preventDefault(); window.openEmailLauncher('Direct Inquiry for Vani Karaikta', 'Hi Vani,\n\nI would like to inquire about commissioning or acquiring artwork.');">Open Email Draft →</a>
       </div>`;
 
     if (links.length === 0) {
@@ -345,26 +345,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Intercept external links targeting vanikaraikta@gmail.com to open the Email Launcher Dialog
-  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+  // Universal Event Delegation for ALL mailto: links (static & dynamically generated)
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="mailto:"]');
+    if (!link) return;
+
+    // Do not intercept if it's inside the Email Launcher Modal itself
     if (link.id === 'emailModalDefault' || link.closest('#emailLauncherModal')) {
       return;
     }
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      let subject = 'Inquiry for Vani Karaikta';
-      let body = 'Hi Vani,\n\nI am reaching out regarding...';
 
-      if (href.includes('?')) {
+    e.preventDefault();
+    const href = link.getAttribute('href') || '';
+    let subject = 'Inquiry for Vani Karaikta';
+    let body = 'Hi Vani,\n\nI love your artwork and would like to connect with you regarding...';
+
+    if (href.includes('?')) {
+      try {
         const query = href.split('?')[1];
         const params = new URLSearchParams(query);
         if (params.get('subject')) subject = decodeURIComponent(params.get('subject'));
         if (params.get('body')) body = decodeURIComponent(params.get('body'));
+      } catch (err) {
+        console.warn('Mailto parse error:', err);
       }
+    }
 
-      openEmailLauncher(subject, body);
-    });
+    openEmailLauncher(subject, body);
   });
 
   // =========================================================================
