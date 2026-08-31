@@ -2,13 +2,27 @@ const { DatabaseSync } = require('node:sqlite');
 const path = require('path');
 const fs = require('fs');
 
-// Ensure data directory exists
-const dataDir = path.join(__dirname, 'data');
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+// Database path configuration (supports Vercel Serverless /tmp)
+const isVercel = Boolean(process.env.VERCEL);
+let dataDir = path.join(__dirname, 'data');
+let dbPath = path.join(dataDir, 'portfolio.db');
+
+if (isVercel) {
+  const tmpDbPath = '/tmp/portfolio.db';
+  if (!fs.existsSync(tmpDbPath)) {
+    if (fs.existsSync(dbPath)) {
+      try {
+        fs.copyFileSync(dbPath, tmpDbPath);
+      } catch (e) {}
+    }
+  }
+  dbPath = tmpDbPath;
+} else {
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
 }
 
-const dbPath = path.join(dataDir, 'portfolio.db');
 const db = new DatabaseSync(dbPath);
 
 // Initialize schema
