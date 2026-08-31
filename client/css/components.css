@@ -1852,6 +1852,30 @@ textarea.form-control {
   transform: translateX(4px);
 }
 
+.btn-email-option.outlook-primary {
+  background-color: #0078D4;
+  color: #FFFFFF;
+  border-color: #0078D4;
+}
+
+.btn-email-option.outlook-primary:hover {
+  background-color: #106EBE;
+  color: #FFFFFF;
+  transform: translateX(4px);
+}
+
+.btn-email-option.default-primary {
+  background-color: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
+
+.btn-email-option.default-primary:hover {
+  background-color: var(--accent-hover);
+  color: #FFFFFF;
+  transform: translateX(4px);
+}
+
 .btn-email-option .option-label {
   display: flex;
   align-items: center;

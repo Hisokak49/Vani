@@ -268,8 +268,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 2. Universal Email Draft & Launcher Dialog
   // =========================================================================
+  // 2. Interactive Email Launcher Modal & Fallback Handlers
+  // =========================================================================
   const emailModal = document.getElementById('emailLauncherModal');
   const emailModalGmail = document.getElementById('emailModalGmail');
+  const emailModalOutlookWeb = document.getElementById('emailModalOutlookWeb');
+  const emailModalYahoo = document.getElementById('emailModalYahoo');
   const emailModalDefault = document.getElementById('emailModalDefault');
   const emailModalCopy = document.getElementById('emailModalCopy');
   const emailModalPreview = document.getElementById('emailModalPreview');
@@ -286,11 +290,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const encSubject = encodeURIComponent(subject);
     const encBody = encodeURIComponent(body);
 
-    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${ARTIST_EMAIL}&su=${encSubject}&body=${encBody}`;
     const mailtoUrl = `mailto:${ARTIST_EMAIL}?subject=${encSubject}&body=${encBody}`;
+    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${ARTIST_EMAIL}&su=${encSubject}&body=${encBody}`;
+    const outlookWebUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${ARTIST_EMAIL}&subject=${encSubject}&body=${encBody}`;
+    const yahooWebUrl = `https://compose.mail.yahoo.com/?to=${ARTIST_EMAIL}&subj=${encSubject}&body=${encBody}`;
 
-    if (emailModalGmail) emailModalGmail.href = gmailWebUrl;
     if (emailModalDefault) emailModalDefault.href = mailtoUrl;
+    if (emailModalGmail) emailModalGmail.href = gmailWebUrl;
+    const outlookBtn = document.getElementById('emailModalOutlookWeb');
+    if (outlookBtn) outlookBtn.href = outlookWebUrl;
+    const yahooBtn = document.getElementById('emailModalYahoo');
+    if (yahooBtn) yahooBtn.href = yahooWebUrl;
+
     if (emailModalPreview) {
       emailModalPreview.innerHTML = `
         <div><strong>To:</strong> ${ARTIST_EMAIL}</div>
@@ -303,8 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
       emailModal.classList.add('open');
       document.body.style.overflow = 'hidden';
     } else {
-      // Direct fallback to Gmail Web or mailto
-      window.open(gmailWebUrl, '_blank') || (window.location.href = mailtoUrl);
+      window.location.href = mailtoUrl;
     }
   }
   window.openEmailLauncher = openEmailLauncher;
@@ -326,8 +336,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (emailModalCopy) {
     emailModalCopy.addEventListener('click', () => {
-      navigator.clipboard.writeText(ARTIST_EMAIL).then(() => {
-        showToast('Email address copied to clipboard! (vanikaraikta@gmail.com)', '📋');
+      const copyContent = currentDraftText || `To: ${ARTIST_EMAIL}\nSubject: Inquiry for Vani Karaikta`;
+      navigator.clipboard.writeText(copyContent).then(() => {
+        showToast('Email draft & address copied to clipboard! (vanikaraikta@gmail.com)', '📋');
       }).catch(() => {
         showToast(`Email: ${ARTIST_EMAIL}`, '✉️');
       });

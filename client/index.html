@@ -452,26 +452,34 @@
       </div>
 
       <div class="email-options-list">
+        <a id="emailModalDefault" href="#" class="btn-email-option default-primary">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Open in Mail App (Outlook / Apple / Windows Mail)</span>
+          </div>
+          <span>Open App ✉</span>
+        </a>
+
         <a id="emailModalGmail" href="#" target="_blank" rel="noopener noreferrer" class="btn-email-option gmail-primary">
           <div class="option-label">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
             <span>Compose in Gmail (Browser)</span>
           </div>
-          <span>Open →</span>
+          <span>Open Gmail ↗</span>
         </a>
 
-        <a id="emailModalDefault" href="#" class="btn-email-option">
+        <a id="emailModalOutlookWeb" href="#" target="_blank" rel="noopener noreferrer" class="btn-email-option outlook-primary">
           <div class="option-label">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>Open in Mail App (Outlook / Apple Mail)</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 6.5l-10 6.5-10-6.5v11h20v-11zm-10 4.5l10-6.5h-20l10 6.5z"/></svg>
+            <span>Compose in Outlook Web / Hotmail</span>
           </div>
-          <span>Open →</span>
+          <span>Open Outlook ↗</span>
         </a>
 
         <button type="button" id="emailModalCopy" class="btn-email-option" style="background-color: var(--bg-secondary);">
           <div class="option-label">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span>Copy Email Address (vanikaraikta@gmail.com)</span>
+            <span>Copy Email &amp; Draft to Clipboard</span>
           </div>
           <span>Copy 📋</span>
         </button>
