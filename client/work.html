@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Works & Archive — Vani Karaikta</title>
+  <meta name="description" content="Explore original paintings, experimental studies, and archived collections by visual artist Vani Karaikta.">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Vani Karaikta Home">
+        <span class="brand-monogram">V</span>
+        <div class="brand-name">
+          <span>Vani Karaikta</span>
+          <span class="artist-title">Visual Artist</span>
+        </div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html#home" class="nav-link">Home</a></li>
+          <li><a href="index.html#social-hub" class="nav-link">Social Media</a></li>
+          <li><a href="index.html#videos" class="nav-link">Videos & Reels</a></li>
+          <li><a href="work.html" class="nav-link active">Artwork</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Follow @unfiltered_vaniii</a>
+        </div>
+      </nav>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#home" class="mobile-nav-link">Home</a></li>
+      <li><a href="index.html#social-hub" class="mobile-nav-link">Social Media</a></li>
+      <li><a href="index.html#videos" class="mobile-nav-link">Videos & Reels</a></li>
+      <li><a href="work.html" class="mobile-nav-link">Artwork</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Get in touch directly:</p>
+      <a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20for%20Vani%20Karaikta&body=Hi%20Vani,%0A%0AI%20am%20reaching%20out%20regarding..." class="btn-link">vanikaraikta@gmail.com →</a>
+      <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-link">@unfiltered_vaniii on Instagram →</a>
+    </div>
+  </div>
+
+  <main style="padding-top: var(--header-height);">
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Catalog &amp; Archive</span>
+          <h1 class="section-title" style="font-size: clamp(2.5rem, 5.5vw, 4rem);">Artwork Catalog</h1>
+          <p class="section-subtitle">
+            Browse original paintings, studies, and mixed media works by Vani Karaikta. Click any piece to enquire.
+          </p>
+        </div>
+
+        <!-- Dynamic gallery — populated from admin dashboard data -->
+        <div class="gallery-grid" id="workGrid">
+          <!-- Rendered by JS from site-data.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Artwork detail view">
+    <div class="lightbox-dialog">
+      <button class="lightbox-close-btn" aria-label="Close modal">✕</button>
+
+      <div class="lightbox-media">
+        <button class="lightbox-nav-btn lightbox-nav-prev" aria-label="Previous artwork">‹</button>
+        <button class="lightbox-nav-btn lightbox-nav-next" aria-label="Next artwork">›</button>
+      </div>
+
+      <div class="lightbox-details">
+        <div>
+          <span class="lightbox-badge badge badge-available">Available</span>
+          <h2 class="lightbox-title" style="margin-top: 0.85rem; margin-bottom: 0.5rem; font-size: 2rem;">Piece Title</h2>
+          <p class="lightbox-desc" style="font-size: 0.95rem; line-height: 1.6;">Artwork description details.</p>
+
+          <div class="lightbox-meta-list">
+            <div class="lightbox-meta-item">
+              <span class="label">Medium:</span>
+              <span class="value lightbox-medium">Oil on Linen</span>
+            </div>
+            <div class="lightbox-meta-item">
+              <span class="label">Dimensions:</span>
+              <span class="value lightbox-dimensions">36 × 48 in</span>
+            </div>
+            <div class="lightbox-meta-item">
+              <span class="label">Year:</span>
+              <span class="value lightbox-year">2024</span>
+            </div>
+            <div class="lightbox-meta-item">
+              <span class="label">Status / Price:</span>
+              <span class="value lightbox-price">Available on Inquiry</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <a href="#" class="btn btn-primary lightbox-inquire-btn" style="width: 100%;">Inquire About This Piece</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <span class="brand-monogram" style="background-color: var(--accent);">V</span>
+            <span class="footer-brand-title">Vani Karaikta</span>
+          </div>
+          <p style="font-size: 0.95rem; max-width: 320px;">
+            Visual artist creating evocative original paintings, tactile mineral studies, and custom commissions worldwide.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#social-hub">Social Media</a></li>
+            <li><a href="index.html#videos">Videos &amp; Reels</a></li>
+            <li><a href="work.html">Artwork Catalog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer">Instagram (@unfiltered_vaniii)</a></li>
+            <li><a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20for%20Vani%20Karaikta&body=Hi%20Vani,%0A%0AI%20am%20reaching%20out%20regarding...">Email: vanikaraikta@gmail.com ↗</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Studio Newsletter</div>
+          <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">Receive private previews of new series before public release.</p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email address" class="footer-newsletter-input" required>
+            <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.25rem;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Vani Karaikta. All rights reserved.</div>
+        <a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20for%20Vani%20Karaikta&body=Hi%20Vani,%0A%0A" style="color: var(--accent-gold);">vanikaraikta@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Email Launcher Modal -->
+  <div class="video-modal-backdrop" id="emailLauncherModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="email-modal-box">
+      <button class="modal-close-btn" onclick="window.closeEmailLauncher()" aria-label="Close email options">✕</button>
+      
+      <div style="margin-bottom: 1.25rem;">
+        <span class="section-eyebrow" style="margin-bottom: 0.25rem;">Send Message</span>
+        <h2 id="emailModalTitle" style="font-size: 1.7rem;">Connect with Vani</h2>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          Choose how you'd like to send your message to <strong>vanikaraikta@gmail.com</strong>:
+        </p>
+      </div>
+
+      <div class="email-draft-preview" id="emailModalPreview"></div>
+
+      <div class="email-options-list">
+        <a id="emailModalGmail" href="#" target="_blank" rel="noopener noreferrer" class="btn-email-option gmail-primary">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            <span>Compose in Gmail (Browser)</span>
+          </div>
+          <span>Open →</span>
+        </a>
+
+        <a id="emailModalDefault" href="#" class="btn-email-option">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Open in Mail App (Outlook / Apple Mail)</span>
+          </div>
+          <span>Open →</span>
+        </a>
+
+        <button type="button" id="emailModalCopy" class="btn-email-option" style="background-color: var(--bg-secondary);">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Email Address (vanikaraikta@gmail.com)</span>
+          </div>
+          <span>Copy 📋</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Artwork Purchase / Inquiry Modal
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="artworkInquiryModal" role="dialog" aria-modal="true" aria-labelledby="artInquiryTitle">
+    <div class="email-modal-box" style="max-width: 540px;">
+      <button class="modal-close-btn" onclick="window.closeArtworkInquiryModal()" aria-label="Close inquiry modal">✕</button>
+      
+      <div style="margin-bottom: 1.25rem;">
+        <span class="section-eyebrow" style="margin-bottom: 0.25rem;">Artwork Acquisition</span>
+        <h2 id="artInquiryTitle" style="font-size: 1.6rem; margin-bottom: 0.25rem;">Inquire About Piece</h2>
+        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+          Send an inquiry to Vani Karaikta. Saved directly to her dashboard and prepared in your email draft.
+        </p>
+      </div>
+
+      <!-- Artwork Snapshot Card -->
+      <div id="artInquirySnapshot" style="display: flex; gap: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.85rem; margin-bottom: 1.25rem; align-items: center;">
+        <img id="artInquiryThumb" src="" alt="Artwork thumbnail" style="width: 70px; height: 70px; object-fit: cover; border-radius: var(--radius-sm); background: #eee;">
+        <div style="flex: 1;">
+          <h4 id="artInquiryPieceTitle" style="font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem;">Title</h4>
+          <p id="artInquiryPieceMeta" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.2rem;">Oil on Canvas</p>
+          <div id="artInquiryPiecePrice" style="font-weight: 700; color: var(--accent); font-size: 0.95rem;">Price</div>
+        </div>
+      </div>
+
+      <!-- Inquiry Form -->
+      <form id="artworkInquiryForm" onsubmit="window.handleArtworkInquirySubmit(event)">
+        <input type="hidden" id="artInquiryArtId">
+        <input type="hidden" id="artInquiryArtTitle">
+        <input type="hidden" id="artInquiryArtPrice">
+        <input type="hidden" id="artInquiryArtImg">
+        <input type="hidden" id="artInquiryArtMedium">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.85rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">Your Name *</label>
+            <input type="text" id="artInquirySenderName" placeholder="e.g. Maya Sharma" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">Your Email *</label>
+            <input type="email" id="artInquirySenderEmail" placeholder="yourname@gmail.com" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">Your Message</label>
+          <textarea id="artInquiryMessage" rows="3" style="width: 100%; padding: 0.65rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-weight: 700;">
+            📨 Send Inquiry &amp; Open Email Draft →
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="window.handleArtworkInquiryWebOnly(event)" style="width: 100%; padding: 0.65rem; font-size: 0.85rem;">
+            ✉️ Send Directly On Website Only
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/videos-data.js"></script>
+  <script src="js/site-data.js"></script>
+  <script src="js/gallery-data.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

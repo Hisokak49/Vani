@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vani Karaikta (@unfiltered_vaniii) — Portfolio & Creator Hub</title>
+  <meta name="description" content="Official portfolio and creator hub for visual artist Vani Karaikta (@unfiltered_vaniii). Watch studio videos, explore artwork, and connect across all social platforms.">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       Header / Navigation
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Vani Karaikta Portfolio">
+        <span class="brand-monogram">V</span>
+        <div class="brand-name">
+          <span>Vani Karaikta</span>
+          <span class="artist-title">@unfiltered_vaniii</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#social-hub" class="nav-link">Social Media</a></li>
+          <li><a href="#videos" class="nav-link">Videos</a></li>
+          <li><a href="#artwork" class="nav-link">Artwork</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Follow on Instagram
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="#home" class="mobile-nav-link">Home</a></li>
+      <li><a href="#social-hub" class="mobile-nav-link">Social Media</a></li>
+      <li><a href="#videos" class="mobile-nav-link">Videos & Reels</a></li>
+      <li><a href="#artwork" class="mobile-nav-link">Artwork</a></li>
+      <li><a href="#about" class="mobile-nav-link">About</a></li>
+      <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem;">Connect Directly:</p>
+      <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-link">Instagram: @unfiltered_vaniii →</a>
+      <a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20for%20Vani%20Karaikta&body=Hi%20Vani,%0A%0AI%20love%20your%20work%20and%20would%20like%20to%20connect%20with%20you%20regarding..." class="btn-link">Email: vanikaraikta@gmail.com →</a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+
+    <!-- =========================================================================
+         1. Creator Hero Section (Profile, Bio & Quick Follow Bar)
+         ========================================================================= -->
+    <section class="creator-hero" id="home">
+      <div class="container">
+        <div class="creator-hero-grid">
+          
+          <div class="creator-hero-content">
+            <div class="creator-badge-row">
+              <span class="verified-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Visual Artist & Creator
+              </span>
+              <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">@unfiltered_vaniii</span>
+            </div>
+
+            <h1 class="creator-title">
+              Raw emotion, tactile textures & <em>unfiltered</em> art.
+            </h1>
+
+            <p class="creator-intro">
+              Welcome to the creative world of <strong>Vani Karaikta</strong>. Explore oil & cold wax paintings, watch studio process videos and behind-the-scenes vlogs, and follow my journey across all social platforms.
+            </p>
+
+            <!-- Quick Follow Social Pills -->
+            <div class="creator-social-bar">
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);">Follow & Connect Everywhere:</span>
+              <div class="social-pills-container" id="heroPillsContainer">
+                <!-- Dynamically rendered by main.js from admin social links -->
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+              <a href="#videos" class="btn btn-primary">
+                Watch Videos 🎬
+              </a>
+              <a href="#artwork" class="btn btn-secondary">
+                View Artwork ✦
+              </a>
+            </div>
+          </div>
+
+          <!-- Creator Portrait Frame -->
+          <div class="creator-portrait-card">
+            <img src="assests/ppf.png" alt="Vani Karaikta (@unfiltered_vaniii)" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80'">
+            <div class="creator-portrait-overlay">
+              <div>
+                <div class="creator-portrait-name">Vani Karaikta</div>
+                <div class="creator-portrait-handle">@unfiltered_vaniii</div>
+              </div>
+              <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">
+                Follow ↗
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         2. Social Media Redirection & Hub Section
+         ========================================================================= -->
+    <section class="section section-secondary" id="social-hub">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Social Media & Community</span>
+          <h2 class="section-title">Follow & Connect Across Platforms</h2>
+          <p class="section-subtitle">
+            Direct redirects to all platforms where Vani shares paintings, daily creative routines, video shorts, and studio insights.
+          </p>
+        </div>
+
+        <div class="social-hub-grid">
+          
+          <div class="social-hub-grid" id="socialHubGrid">
+            <!-- Dynamically rendered by main.js from admin social links -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. Video Showcase & Interactive Reels Gallery
+         ========================================================================= -->
+    <section class="section" id="videos">
+      <div class="container">
+        
+        <!-- Video Header with Filters & "Post Video" Button -->
+        <div class="video-section-header">
+          <div>
+            <span class="section-eyebrow">Video Portfolio & Reels</span>
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Watch Studio Videos & Reels</h2>
+            <p style="color: var(--text-secondary); max-width: 540px;">
+              Watch behind-the-scenes painting sessions, palette mixing, and artist vlogs. Click any video to play instantly.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <!-- Category Filter Tabs -->
+            <div class="video-filter-bar">
+              <button class="v-filter-btn active" data-vfilter="all">All Videos</button>
+              <button class="v-filter-btn" data-vfilter="studio">Studio Vlogs</button>
+              <button class="v-filter-btn" data-vfilter="process">Art Process</button>
+              <button class="v-filter-btn" data-vfilter="reels">Reels & Shorts</button>
+            </div>
+
+            <!-- Post New Video Button -->
+            <button class="btn-post-video" onclick="window.openPostVideoModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Post Video
+            </button>
+          </div>
+        </div>
+
+        <!-- Spotlight Featured Video Player — Placeholder until YouTube link is added -->
+        <div class="video-showcase-wrapper" style="margin-bottom: 3.5rem;">
+          <div class="video-grid">
+            <div class="video-container" style="background: linear-gradient(135deg, #1a1a1e 0%, #2a1f1a 60%, #3a2010 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1.25rem; min-height: 360px;">
+              <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(194,94,62,0.18); border: 2px dashed var(--accent); display: flex; align-items: center; justify-content: center;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+              </div>
+              <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; text-align: center; margin: 0;">Featured video coming soon — paste your YouTube link using <strong style="color: var(--accent);">+ Post Video</strong></p>
+            </div>
+            <div class="video-details">
+              <span class="section-eyebrow" style="color: var(--accent-gold);">Featured Spotlight</span>
+              <blockquote class="video-quote">
+                "Art isn't about perfection; it's about holding up a mirror to the unfiltered truth of our inner landscape."
+              </blockquote>
+              <p style="color: rgba(255, 255, 255, 0.82); font-size: 0.95rem;">
+                Add your featured YouTube video above using the <strong style="color: var(--accent-gold);">+ Post Video</strong> button — paste any YouTube link and it will appear instantly in your portfolio.
+              </p>
+              <div>
+                <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white" style="font-size: 0.88rem;">
+                  Follow on Instagram for Daily Clips →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Video Grid (Populated by videos-data.js + Custom additions) -->
+        <div class="video-catalog-grid" id="videoCatalogGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. Dynamic Artwork Gallery (powered by Admin Dashboard)
+         ========================================================================= -->
+    <section class="section section-secondary" id="artwork">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Original Artworks</span>
+          <h2 class="section-title">Paintings &amp; Studies</h2>
+          <p class="section-subtitle">
+            Original works by Vani Karaikta. Interested in a piece? Tap "Ask to Buy" to send her a message directly.
+          </p>
+        </div>
+        <!-- Dynamic artwork grid — populated by site-data.js via main.js -->
+        <div class="gallery-grid" id="publicArtworkGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. Artist Bio & Statement
+         ========================================================================= -->
+    <section class="section" id="about">
+      <div class="container container-narrow">
+        <div style="background-color: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: clamp(2rem, 5vw, 4rem); box-shadow: var(--shadow-sm);">
+          <span class="section-eyebrow">Artist Statement</span>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 1.5rem;">
+            "Art is the quiet courage of embracing the unfiltered self."
+          </h2>
+          <p style="font-size: 1.1rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 1.25rem;">
+            <strong>Vani Karaikta</strong> (@unfiltered_vaniii) is a visual artist and content creator focusing on tactile earth textures, organic minerals, and rich atmospheric light.
+          </p>
+          <p style="line-height: 1.75; margin-bottom: 2rem;">
+            Working with raw pigments, oils, and cold wax, each piece is built through intuitive layering and scraping. Her social channels offer collectors and enthusiasts a transparent, unfiltered window into the studio journey.
+          </p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Follow @unfiltered_vaniii on Instagram
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. Direct Inquiries / Contact Section
+         ========================================================================= -->
+    <section class="section section-secondary" id="contact">
+      <div class="container container-narrow">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Direct Contact</span>
+          <h2 class="section-title">Let's Connect & Collaborate</h2>
+          <p class="section-subtitle">
+            Whether for bespoke commissions, collaborations, press features, or gallery acquisitions, reach out directly.
+          </p>
+        </div>
+
+        <form id="commissionForm" class="contact-card" style="background-color: var(--bg-card); padding: clamp(2rem, 4vw, 3rem); border-radius: var(--radius-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="clientName">Your Name</label>
+              <input type="text" id="clientName" name="name" class="form-control" placeholder="e.g. Jane Doe" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="clientEmail">Email Address</label>
+              <input type="email" id="clientEmail" name="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="clientMessage">Message / Project Vision</label>
+            <textarea id="clientMessage" name="message" class="form-control" placeholder="Tell Vani about your inquiry, commission idea, or collaboration..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+            Send Inquiry via Email →
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       Footer
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">Vani Karaikta</div>
+          <p style="font-size: 0.95rem; line-height: 1.6;">
+            Visual Artist & Creator · @unfiltered_vaniii.<br>
+            Raw emotion, organic textures, and unfiltered creative storytelling.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#social-hub">Social Media</a></li>
+            <li><a href="#videos">Videos & Reels</a></li>
+            <li><a href="#artwork">Artwork Gallery</a></li>
+            <li><a href="#about">About Vani</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Social Links</div>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer">Instagram (@unfiltered_vaniii) ↗</a></li>
+            <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube Channel ↗</a></li>
+            <li><a href="https://www.threads.net" target="_blank" rel="noopener noreferrer">Threads ↗</a></li>
+            <li><a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer">Pinterest ↗</a></li>
+            <li><a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20from%20Portfolio&body=Hi%20Vani,%0A%0AI%20am%20contacting%20you%20regarding...">Email: vanikaraikta@gmail.com ↗</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Direct Inquiries</div>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">
+            For private acquisitions, commissions, and brand partnerships:
+          </p>
+          <a href="mailto:vanikaraikta@gmail.com?subject=Studio%20Acquisition%20/%20Partnership%20Inquiry&body=Hi%20Vani,%0A%0AI%20would%20love%20to%20discuss..." class="btn btn-outline-white" style="font-size: 0.85rem; width: 100%;">
+            Email: vanikaraikta@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="yearSpan">2024</span> Vani Karaikta (@unfiltered_vaniii). All rights reserved.</div>
+        <div class="social-icon-row">
+          <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+          <a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20for%20Vani%20Karaikta&body=Hi%20Vani,%0A%0A" class="social-icon-link" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       Post / Add Video Modal Dialog
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="postVideoModal" role="dialog" aria-modal="true" aria-labelledby="postModalTitle">
+    <div class="post-video-modal-box">
+      <button class="modal-close-btn" onclick="window.closePostVideoModal()" aria-label="Close modal">✕</button>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <span class="section-eyebrow" style="margin-bottom: 0.35rem;">Creator Tool</span>
+        <h2 id="postModalTitle" style="font-size: 1.8rem;">Post Video to Portfolio</h2>
+        <p style="font-size: 0.92rem; color: var(--text-secondary);">
+          Paste any YouTube URL, Instagram Reel, or video link to add it directly to your portfolio.
+        </p>
+      </div>
+
+      <form id="postVideoForm">
+        <div class="form-group">
+          <label class="form-label" for="postVideoUrl">Video URL *</label>
+          <input type="url" id="postVideoUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=... or Reel URL" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="postVideoTitle">Video Title</label>
+          <input type="text" id="postVideoTitle" class="form-control" placeholder="e.g. Painting Process & Pigment Mixing">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="postVideoCategory">Category</label>
+            <select id="postVideoCategory" class="form-control">
+              <option value="studio">Studio Vlog</option>
+              <option value="process">Art Process</option>
+              <option value="reels">Reel / Short</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="postVideoThumb">Custom Thumbnail (Optional)</label>
+            <input type="url" id="postVideoThumb" class="form-control" placeholder="https://image-url.jpg">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="postVideoDesc">Description (Optional)</label>
+          <textarea id="postVideoDesc" class="form-control" style="min-height: 80px;" placeholder="Brief summary of this video..."></textarea>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="window.closePostVideoModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish to Portfolio ✦</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Universal Email Launcher Modal
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="emailLauncherModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="email-modal-box">
+      <button class="modal-close-btn" onclick="window.closeEmailLauncher()" aria-label="Close email options">✕</button>
+      
+      <div style="margin-bottom: 1.25rem;">
+        <span class="section-eyebrow" style="margin-bottom: 0.25rem;">Send Message</span>
+        <h2 id="emailModalTitle" style="font-size: 1.7rem;">Connect with Vani</h2>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          Choose how you'd like to send your email to <strong>vanikaraikta@gmail.com</strong>:
+        </p>
+      </div>
+
+      <div class="email-draft-preview" id="emailModalPreview">
+        <!-- Filled dynamically -->
+      </div>
+
+      <div class="email-options-list">
+        <a id="emailModalGmail" href="#" target="_blank" rel="noopener noreferrer" class="btn-email-option gmail-primary">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            <span>Compose in Gmail (Browser)</span>
+          </div>
+          <span>Open →</span>
+        </a>
+
+        <a id="emailModalDefault" href="#" class="btn-email-option">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Open in Mail App (Outlook / Apple Mail)</span>
+          </div>
+          <span>Open →</span>
+        </a>
+
+        <button type="button" id="emailModalCopy" class="btn-email-option" style="background-color: var(--bg-secondary);">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Email Address (vanikaraikta@gmail.com)</span>
+          </div>
+          <span>Copy 📋</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Artwork Purchase / Inquiry Modal
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="artworkInquiryModal" role="dialog" aria-modal="true" aria-labelledby="artInquiryTitle">
+    <div class="email-modal-box" style="max-width: 540px;">
+      <button class="modal-close-btn" onclick="window.closeArtworkInquiryModal()" aria-label="Close inquiry modal">✕</button>
+      
+      <div style="margin-bottom: 1.25rem;">
+        <span class="section-eyebrow" style="margin-bottom: 0.25rem;">Artwork Acquisition</span>
+        <h2 id="artInquiryTitle" style="font-size: 1.6rem; margin-bottom: 0.25rem;">Inquire About Piece</h2>
+        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+          Send an inquiry to Vani Karaikta. Saved directly to her dashboard and prepared in your email draft.
+        </p>
+      </div>
+
+      <!-- Artwork Snapshot Card -->
+      <div id="artInquirySnapshot" style="display: flex; gap: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.85rem; margin-bottom: 1.25rem; align-items: center;">
+        <img id="artInquiryThumb" src="" alt="Artwork thumbnail" style="width: 70px; height: 70px; object-fit: cover; border-radius: var(--radius-sm); background: #eee;">
+        <div style="flex: 1;">
+          <h4 id="artInquiryPieceTitle" style="font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem;">Title</h4>
+          <p id="artInquiryPieceMeta" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.2rem;">Oil on Canvas</p>
+          <div id="artInquiryPiecePrice" style="font-weight: 700; color: var(--accent); font-size: 0.95rem;">Price</div>
+        </div>
+      </div>
+
+      <!-- Inquiry Form -->
+      <form id="artworkInquiryForm" onsubmit="window.handleArtworkInquirySubmit(event)">
+        <input type="hidden" id="artInquiryArtId">
+        <input type="hidden" id="artInquiryArtTitle">
+        <input type="hidden" id="artInquiryArtPrice">
+        <input type="hidden" id="artInquiryArtImg">
+        <input type="hidden" id="artInquiryArtMedium">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.85rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">Your Name *</label>
+            <input type="text" id="artInquirySenderName" placeholder="e.g. Maya Sharma" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">Your Email *</label>
+            <input type="email" id="artInquirySenderEmail" placeholder="yourname@gmail.com" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">Your Message</label>
+          <textarea id="artInquiryMessage" rows="3" style="width: 100%; padding: 0.65rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-weight: 700;">
+            📨 Send Inquiry &amp; Open Email Draft →
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="window.handleArtworkInquiryWebOnly(event)" style="width: 100%; padding: 0.65rem; font-size: 0.85rem;">
+            ✉️ Send Directly On Website Only
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Theater Video Modal (Popup Player)
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="theaterVideoModal" role="dialog" aria-modal="true">
+    <div class="theater-modal-box">
+      <button class="modal-close-btn" style="color: #FFFFFF; background: rgba(0,0,0,0.6); z-index: 10;" onclick="window.closeTheaterVideo()" aria-label="Close video player">✕</button>
+      <div class="theater-iframe-container">
+        <iframe id="theaterIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Artwork Lightbox Inspector
+       ========================================================================= -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Artwork detail view">
+    <div class="lightbox-dialog">
+      <button class="lightbox-close-btn" aria-label="Close modal">✕</button>
+
+      <div class="lightbox-media">
+        <button class="lightbox-nav-btn lightbox-nav-prev" aria-label="Previous artwork">‹</button>
+        <button class="lightbox-nav-btn lightbox-nav-next" aria-label="Next artwork">›</button>
+      </div>
+
+      <div class="lightbox-details">
+        <div>
+          <span class="lightbox-badge badge badge-available">Available</span>
+          <h2 class="lightbox-title" style="margin-top: 0.85rem; margin-bottom: 0.5rem; font-size: 2rem;">Piece Title</h2>
+          <p class="lightbox-desc" style="font-size: 0.95rem; line-height: 1.6;">Artwork description details.</p>
+
+          <div class="lightbox-meta-list">
+            <div class="lightbox-meta-item">
+              <span class="label">Medium:</span>
+              <span class="value lightbox-medium">Oil on Linen</span>
+            </div>
+            <div class="lightbox-meta-item">
+              <span class="label">Dimensions:</span>
+              <span class="value lightbox-dimensions">36 × 48 in</span>
+            </div>
+            <div class="lightbox-meta-item">
+              <span class="label">Year:</span>
+              <span class="value lightbox-year">2024</span>
+            </div>
+            <div class="lightbox-meta-item">
+              <span class="label">Status / Price:</span>
+              <span class="value lightbox-price">Available on Inquiry</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <a href="mailto:vanikaraikta@gmail.com?subject=Artwork%20Inquiry" class="btn btn-primary lightbox-inquire-btn" style="width: 100%;">
+            Inquire About This Piece →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="js/videos-data.js"></script>
+  <script src="js/site-data.js"></script>
+  <script src="js/gallery-data.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

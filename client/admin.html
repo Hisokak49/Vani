@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Vani Karaikta Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --admin-bg: #F5F5F7;
+      --admin-sidebar: #1C1C1E;
+      --admin-sidebar-hover: #2C2C2E;
+      --admin-sidebar-active: #C25E3E;
+      --admin-white: #FFFFFF;
+      --admin-accent: #C25E3E;
+      --admin-accent-hover: #A64B2D;
+      --admin-success: #34C759;
+      --admin-danger: #FF3B30;
+      --admin-warning: #FF9500;
+      --admin-border: #E5E5EA;
+      --admin-text: #1C1C1E;
+      --admin-text-muted: #8E8E93;
+      --admin-radius: 12px;
+      --admin-radius-sm: 8px;
+      --sidebar-width: 240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      font-size: 15px;
+      background: var(--admin-bg);
+      color: var(--admin-text);
+      overflow-x: hidden;
+    }
+
+    /* ---- LOGIN SCREEN ---- */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      background: linear-gradient(135deg, #1C1C1E 0%, #2a1f1a 60%, #3a2010 100%);
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .login-logo {
+      width: 64px;
+      height: 64px;
+      background: var(--admin-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+      color: white;
+      font-weight: 700;
+    }
+    .login-card h1 { font-size: clamp(1.4rem, 4vw, 1.7rem); font-weight: 700; margin-bottom: 0.4rem; }
+    .login-card p { color: var(--admin-text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .login-card input[type="password"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid var(--admin-border);
+      border-radius: var(--admin-radius-sm);
+      font-size: 1rem;
+      font-family: inherit;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+      text-align: center;
+      letter-spacing: 0.1em;
+      box-sizing: border-box;
+    }
+    .login-card input[type="password"]:focus { outline: none; border-color: var(--admin-accent); }
+    .login-btn {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--admin-accent);
+      color: white;
+      border: none;
+      border-radius: var(--admin-radius-sm);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .login-btn:hover { background: var(--admin-accent-hover); }
+    #loginError { color: var(--admin-danger); font-size: 0.88rem; margin-top: 0.75rem; min-height: 1.2em; }
+    .login-hint { margin-top: 1.5rem; font-size: 0.82rem; color: var(--admin-text-muted); }
+
+    /* ---- DASHBOARD LAYOUT (FULL SCREEN AUTO-ADJUSTING) ---- */
+    #dashboard {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+    .admin-layout {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* ---- SIDEBAR ---- */
+    .admin-sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: var(--admin-sidebar);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .admin-sidebar-logo {
+      padding: 1.5rem 1.25rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo-avatar-wrapper {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .sidebar-avatar-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--admin-accent);
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: #2C2C2E;
+      display: block;
+    }
+    .logo-avatar-wrapper:hover .sidebar-avatar-img {
+      transform: scale(1.08);
+      box-shadow: 0 0 14px rgba(194, 94, 62, 0.6);
+    }
+    .avatar-edit-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 18px;
+      height: 18px;
+      background: var(--admin-accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      border: 2px solid var(--admin-sidebar);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .admin-sidebar-logo .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--admin-accent);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .admin-sidebar-logo .logo-title { color: #fff; font-weight: 700; font-size: 1.05rem; display: block; }
+    .admin-sidebar-logo .logo-sub { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+    .admin-nav { padding: 1rem 0.75rem; flex: 1; }
+    .admin-nav-label { color: rgba(255,255,255,0.35); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.5rem 0.25rem; }
+    .admin-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: none;
+      background: none;
+      color: rgba(255,255,255,0.65);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 8px;
+      text-align: left;
+      transition: all 0.15s;
+      margin-bottom: 3px;
+    }
+    .admin-nav-btn:hover { background: var(--admin-sidebar-hover); color: #fff; }
+    .admin-nav-btn.active { background: var(--admin-accent); color: #fff; font-weight: 600; }
+    .admin-nav-btn .nav-icon { font-size: 1.15rem; width: 22px; text-align: center; }
+    .admin-sidebar-footer {
+      padding: 1rem 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .view-site-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.85rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.88rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+    .view-site-btn:hover { background: var(--admin-sidebar-hover); color: #fff; }
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.85rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.88rem;
+      font-family: inherit;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .logout-btn:hover { background: rgba(255,59,48,0.15); color: #FF3B30; }
+
+    /* ---- MAIN CONTENT AREA (100% WIDTH FLUID EXPANSION) ---- */
+    .admin-main {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      background: var(--admin-bg);
+      display: flex;
+      flex-direction: column;
+    }
+    .admin-tab {
+      display: none;
+      padding: clamp(1.25rem, 2.5vw, 2.75rem);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      flex: 1;
+    }
+    .admin-tab.visible { display: block; }
+    .admin-page-header {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--admin-border);
+      padding-bottom: 1.25rem;
+      width: 100%;
+    }
+    .admin-page-title { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700; margin-bottom: 0.35rem; color: var(--admin-text); }
+    .admin-page-sub { color: var(--admin-text-muted); font-size: clamp(0.85rem, 1.2vw, 0.95rem); line-height: 1.5; }
+
+    /* ---- CARDS ---- */
+    .admin-card {
+      background: var(--admin-white);
+      border-radius: var(--admin-radius);
+      padding: clamp(1.25rem, 2vw, 1.75rem);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 6px 16px rgba(0,0,0,0.03);
+      margin-bottom: 1.75rem;
+      border: 1px solid var(--admin-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* ---- BUTTONS ---- */
+    .admin-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: var(--admin-radius-sm);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .admin-btn-primary { background: var(--admin-accent); color: white; }
+    .admin-btn-primary:hover { background: var(--admin-accent-hover); transform: translateY(-1px); }
+    .admin-btn-secondary { background: #F2F2F7; color: var(--admin-text); border: 1px solid var(--admin-border); }
+    .admin-btn-secondary:hover { background: #E5E5EA; }
+    .admin-btn-danger { background: rgba(255,59,48,0.1); color: var(--admin-danger); border: 1px solid rgba(255,59,48,0.2); }
+    .admin-btn-danger:hover { background: rgba(255,59,48,0.18); }
+    .admin-btn-sm { padding: 0.45rem 0.9rem; font-size: 0.83rem; }
+
+    /* ---- FORMS ---- */
+    .admin-form-group { margin-bottom: 1.25rem; }
+    .admin-form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--admin-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.45rem;
+    }
+    .admin-form-group input,
+    .admin-form-group select,
+    .admin-form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid var(--admin-border);
+      border-radius: var(--admin-radius-sm);
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--admin-text);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-sizing: border-box;
+    }
+    .admin-form-group input:focus,
+    .admin-form-group select:focus,
+    .admin-form-group textarea:focus { outline: none; border-color: var(--admin-accent); box-shadow: 0 0 0 3px rgba(194,94,62,0.15); }
+    .admin-form-group textarea { resize: vertical; min-height: 105px; }
+    .admin-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.25rem; width: 100%; }
+    .admin-form-help { font-size: 0.82rem; color: var(--admin-text-muted); margin-top: 0.35rem; }
+
+    /* ---- FLUID AUTO-ADJUSTING RESPONSIVE GRIDS ---- */
+    .admin-social-grid,
+    .admin-artwork-grid,
+    .admin-video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+      gap: clamp(1rem, 2vw, 1.75rem);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .admin-artwork-card {
+      background: var(--admin-white);
+      border: 1.5px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.4rem;
+      align-items: flex-start;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-artwork-card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    }
+    .admin-artwork-thumb {
+      width: 110px;
+      height: 110px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F2F2F7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .admin-artwork-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb-placeholder, .thumb-error {
+      font-size: 0.75rem;
+      color: var(--admin-text-muted);
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .admin-artwork-info { flex: 1; min-width: 0; }
+    .admin-artwork-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .admin-artwork-meta { font-size: 0.85rem; color: var(--admin-text-muted); margin-bottom: 0.4rem; }
+    .admin-artwork-desc { font-size: 0.88rem; color: #444; margin-bottom: 0.6rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
+    .admin-artwork-actions { display: flex; flex-direction: column; gap: 0.5rem; flex-shrink: 0; }
+    .admin-artwork-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .admin-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .badge-sale { background: rgba(52,199,89,0.12); color: #1A9438; border: 1px solid rgba(52,199,89,0.25); }
+    .badge-nosale { background: rgba(142,142,147,0.12); color: #636366; border: 1px solid rgba(142,142,147,0.25); }
+    .badge-price { background: rgba(194,94,62,0.12); color: var(--admin-accent); border: 1px solid rgba(194,94,62,0.25); }
+    .badge-cat { background: rgba(194,94,62,0.1); color: var(--admin-accent); border: 1px solid rgba(194,94,62,0.2); }
+
+    /* ---- DIRECT UPLOAD ZONE ---- */
+    .admin-upload-zone {
+      border: 2px dashed #C8C8CE;
+      border-radius: var(--admin-radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      background: #FAFAFC;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-upload-zone:hover {
+      border-color: var(--admin-accent);
+      background: #FFF9F7;
+    }
+    .upload-zone-icon { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
+    .upload-zone-title { font-size: 1rem; font-weight: 700; color: var(--admin-text); margin-bottom: 0.25rem; }
+    .upload-zone-sub { font-size: 0.83rem; color: var(--admin-text-muted); }
+    .admin-preview-box {
+      border-radius: var(--admin-radius);
+      overflow: hidden;
+      position: relative;
+      margin-top: 0.75rem;
+      max-height: 240px;
+      border: 1.5px solid var(--admin-border);
+      background: #111;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-preview-box img, .admin-preview-box video {
+      width: 100%;
+      max-height: 240px;
+      object-fit: contain;
+      display: block;
+    }
+    .btn-remove-photo {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 0.4rem 0.95rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-remove-photo:hover { background: #FF3B30; }
+
+    /* ---- INQUIRY CARDS ---- */
+    .inquiry-card {
+      background: var(--admin-white);
+      border: 1.5px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      padding: 1.6rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .inquiry-card.status-new {
+      border-left: 6px solid var(--admin-accent);
+      background: #FFFAF8;
+    }
+    .inquiry-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .inquiry-sender-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--admin-text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .inquiry-sender-email {
+      font-size: 0.95rem;
+      color: var(--admin-accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .inquiry-time {
+      font-size: 0.85rem;
+      color: var(--admin-text-muted);
+    }
+    .inquiry-artwork-box {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: #F2F2F7;
+      padding: 1rem 1.25rem;
+      border-radius: var(--admin-radius-sm);
+      margin-bottom: 1.25rem;
+    }
+    .inquiry-artwork-thumb {
+      width: 75px;
+      height: 75px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #E5E5EA;
+    }
+    .inquiry-artwork-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--admin-text);
+    }
+    .inquiry-artwork-meta {
+      font-size: 0.88rem;
+      color: var(--admin-text-muted);
+    }
+    .inquiry-artwork-price {
+      margin-left: auto;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--admin-accent);
+    }
+    .inquiry-message {
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: #333;
+      background: white;
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius-sm);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .inquiry-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    /* ---- SOCIAL MEDIA CARD ---- */
+    .admin-social-card {
+      background: var(--admin-white);
+      border: 1.5px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-social-card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .social-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--admin-border);
+    }
+    .social-card-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .social-card-icon-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .social-card-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--admin-text);
+    }
+    .social-card-status {
+      font-size: 0.8rem;
+      color: var(--admin-text-muted);
+    }
+    .social-card-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    /* ---- VIDEO SECTION ---- */
+    .video-type-switcher {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      background: #E5E5EA;
+      padding: 4px;
+      border-radius: var(--admin-radius-sm);
+      display: inline-flex;
+      flex-wrap: wrap;
+    }
+    .video-type-btn {
+      padding: 0.6rem 1.4rem;
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #666;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .video-type-btn.active {
+      background: white;
+      color: var(--admin-text);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .admin-video-card {
+      background: var(--admin-white);
+      border: 1.5px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-video-card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .admin-video-preview-wrapper {
+      position: relative;
+      background: #000;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .admin-video-preview-wrapper video,
+    .admin-video-preview-wrapper iframe {
+      width: 100%;
+      height: 240px;
+      border: none;
+      display: block;
+    }
+    .admin-video-card-body {
+      padding: 1.35rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.95rem;
+    }
+    .admin-video-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--admin-text);
+      line-height: 1.4;
+    }
+
+    /* ---- PROFILE PHOTO MODAL & HERO ---- */
+    .profile-photo-hero {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: var(--admin-white);
+      border-radius: var(--admin-radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      flex-wrap: wrap;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .profile-avatar-large {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--admin-accent);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+      background: #eee;
+    }
+    .profile-hero-info { flex: 1; min-width: 240px; }
+    .profile-history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.25rem;
+      width: 100%;
+    }
+    .profile-history-item {
+      background: #F9F9FB;
+      border: 1.5px solid var(--admin-border);
+      border-radius: var(--admin-radius-sm);
+      padding: 0.85rem;
+      text-align: center;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .profile-history-item.is-active {
+      border-color: var(--admin-accent);
+      background: #FFF9F7;
+    }
+    .profile-history-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 0.6rem;
+      display: block;
+      border: 2px solid #ddd;
+    }
+    .profile-history-item.is-active .profile-history-thumb {
+      border-color: var(--admin-accent);
+    }
+
+    /* ---- EMPTY STATE ---- */
+    .admin-empty-state {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      color: var(--admin-text-muted);
+      width: 100%;
+    }
+    .admin-empty-icon { font-size: 3rem; margin-bottom: 0.85rem; }
+    .admin-empty-state h3 { font-size: 1.2rem; font-weight: 700; color: var(--admin-text); margin-bottom: 0.5rem; }
+    .admin-empty-state p { font-size: 0.95rem; }
+
+    /* ---- TOAST ---- */
+    .admin-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #1C1C1E;
+      color: white;
+      padding: 0.9rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 340px;
+    }
+    .admin-toast.show { transform: translateY(0); opacity: 1; }
+    .admin-toast-error { background: var(--admin-danger); }
+    .admin-toast-info { background: #636366; }
+
+    /* ---- COLLAPSIBLE PANEL ---- */
+    .add-panel {
+      background: var(--admin-white);
+      border: 1.5px solid var(--admin-accent);
+      border-radius: var(--admin-radius);
+      padding: clamp(1.25rem, 2vw, 1.75rem);
+      margin-bottom: 1.75rem;
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .add-panel h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--admin-accent);
+    }
+
+    /* ---- TIPS BOX ---- */
+    .admin-tip {
+      background: #FFF9F0;
+      border: 1.5px solid #FFD580;
+      border-radius: var(--admin-radius-sm);
+      padding: 1rem 1.25rem;
+      font-size: 0.88rem;
+      color: #7A5C00;
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-tip strong { color: #5A3E00; }
+
+    /* ---- RESPONSIVE BREAKPOINTS (LAPTOP / TABLET / PHONE) ---- */
+    @media (max-width: 840px) {
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar {
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+      .admin-sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+      }
+      .logo-avatar-wrapper { margin-bottom: 0; width: 40px; height: 40px; }
+      .sidebar-avatar-img { width: 40px; height: 40px; }
+      .admin-sidebar-logo .logo-title { font-size: 0.95rem; }
+      .admin-sidebar-logo .logo-sub { display: none; }
+      
+      .admin-nav {
+        display: flex;
+        overflow-x: auto;
+        padding: 0.5rem;
+        gap: 0.25rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .admin-nav-label { display: none; }
+      .admin-nav-btn {
+        flex-shrink: 0;
+        width: auto;
+        padding: 0.5rem 0.85rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        margin-bottom: 0;
+      }
+      .admin-sidebar-footer {
+        display: none;
+      }
+      .admin-tab { padding: 1.25rem 1rem; }
+      .admin-page-header { margin-bottom: 1.25rem; padding-bottom: 1rem; }
+    }
+
+    @media (max-width: 520px) {
+      .admin-social-grid,
+      .admin-artwork-grid,
+      .admin-video-grid {
+        grid-template-columns: 1fr;
+      }
+      .admin-artwork-card { flex-direction: column; }
+      .admin-artwork-thumb { width: 100%; height: 180px; }
+      .admin-artwork-actions { flex-direction: row; width: 100%; margin-top: 0.5rem; }
+      .admin-artwork-actions button { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       LOGIN SCREEN
+       ============================================================ -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">V</div>
+      <h1>Portfolio Dashboard</h1>
+      <p>Vani Karaikta · Admin Panel</p>
+      <form id="loginForm">
+        <input type="password" id="passwordInput" placeholder="Enter your password" autocomplete="current-password" autofocus>
+        <button type="submit" class="login-btn">Login →</button>
+        <div id="loginError"></div>
+      </form>
+      <p class="login-hint">Default password: <strong>vani2026</strong><br>Change it in Settings after logging in.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DASHBOARD
+       ============================================================ -->
+  <div id="dashboard">
+    <div class="admin-layout">
+
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar-logo">
+          <div class="logo-avatar-wrapper" onclick="window.openProfilePhotoModal()" title="Click to change your profile photo">
+            <img id="sidebarAvatarImg" src="assests/ppf.png" alt="Vani Karaikta" class="sidebar-avatar-img" onerror="this.style.display='none'; document.getElementById('sidebarAvatarFallback').style.display='flex';">
+            <div id="sidebarAvatarFallback" class="logo-icon" style="display:none;">V</div>
+            <div class="avatar-edit-badge" title="Change Photo">📷</div>
+          </div>
+          <span class="logo-title">Vani's Portfolio</span>
+          <span class="logo-sub" style="cursor:pointer;" onclick="window.openProfilePhotoModal()">Change Photo ⚙️</span>
+        </div>
+
+        <nav class="admin-nav">
+          <div class="admin-nav-label">Manage</div>
+          <button class="admin-nav-btn" data-tab="artworks" onclick="showTab('artworks')">
+            <span class="nav-icon">🖼️</span>
+            <span>My Artworks</span>
+          </button>
+          <button class="admin-nav-btn" data-tab="inquiries" onclick="showTab('inquiries')">
+            <span class="nav-icon">📬</span>
+            <span>Inquiries</span>
+            <span id="adminInquiriesBadge" style="display:none;margin-left:auto;background:var(--admin-accent);color:white;font-size:0.75rem;padding:0.15rem 0.5rem;border-radius:10px;font-weight:700;">0</span>
+          </button>
+          <button class="admin-nav-btn" data-tab="social" onclick="showTab('social')">
+            <span class="nav-icon">🔗</span>
+            <span>Social Links</span>
+          </button>
+          <button class="admin-nav-btn" data-tab="videos" onclick="showTab('videos')">
+            <span class="nav-icon">🎬</span>
+            <span>Videos</span>
+          </button>
+          <div class="admin-nav-label" style="margin-top: 1rem;">Account</div>
+          <button class="admin-nav-btn" data-tab="settings" onclick="showTab('settings')">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+          </button>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+          <a href="index.html" target="_blank" class="view-site-btn">
+            <span>↗</span>
+            <span>View Portfolio</span>
+          </a>
+          <button class="logout-btn" onclick="logout()">
+            <span>⎋</span>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-main">
+
+        <!-- ========== ARTWORKS TAB ========== -->
+        <section class="admin-tab" data-tab-id="artworks">
+          <div class="admin-page-header">
+            <div>
+              <h1 class="admin-page-title">🖼️ My Artworks</h1>
+              <p class="admin-page-sub">Post your artwork here. People visiting your portfolio can tap "Ask to Buy" to message you.</p>
+            </div>
+            <button class="admin-btn admin-btn-primary" onclick="openAddArtworkPanel()">
+              ＋ Add New Artwork
+            </button>
+          </div>
+
+          <div class="admin-tip">
+            💡 <strong>How to add artwork:</strong> Click or tap the photo box below to select any picture from your <strong>phone photo gallery</strong> or <strong>computer files</strong>.
+          </div>
+
+          <!-- Add / Edit Artwork Form Panel -->
+          <div class="add-panel" id="addArtworkPanel">
+            <h3 id="artworkFormTitle">Add New Artwork</h3>
+            <form id="artworkForm">
+              <input type="hidden" id="artworkEditId">
+              <input type="hidden" id="artImageBase64">
+
+              <!-- Direct Photo Upload Box -->
+              <div class="admin-form-group">
+                <label>Artwork Photo *</label>
+                <input type="file" id="artFileInput" accept="image/*" style="display:none;" onchange="handleArtworkFileSelect(event)">
+                
+                <div class="admin-upload-zone" id="artDropZone" onclick="document.getElementById('artFileInput').click()">
+                  <span class="upload-zone-icon">📸</span>
+                  <div class="upload-zone-title">Choose Photo from Gallery or Files</div>
+                  <div class="upload-zone-sub">Tap here to select from your phone gallery, camera, or desktop files (JPG, PNG, WebP)</div>
+                </div>
+
+                <div class="admin-preview-box" id="artPreviewContainer" style="display:none;">
+                  <img id="artImagePreview" alt="Artwork preview">
+                  <button type="button" class="btn-remove-photo" onclick="removeArtworkPhoto()">✕ Change Photo</button>
+                </div>
+              </div>
+
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="artTitle">Artwork Title *</label>
+                  <input type="text" id="artTitle" placeholder="e.g. Whispers of the Golden Hour" required>
+                </div>
+                <div class="admin-form-group">
+                  <label for="artPrice">Price (Optional)</label>
+                  <input type="text" id="artPrice" placeholder="e.g. ₹25,000 or $450">
+                </div>
+              </div>
+
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="artForSale">Is it available to buy?</label>
+                  <select id="artForSale">
+                    <option value="yes">✓ Yes — Show "Ask to Buy" button</option>
+                    <option value="no">✗ No — Just showing it (Not for sale)</option>
+                  </select>
+                </div>
+                <div class="admin-form-group">
+                  <label for="artMedium">Medium (what material?)</label>
+                  <input type="text" id="artMedium" placeholder="e.g. Oil on Belgian Linen, Watercolour">
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="artDesc">Description (what is this piece about?)</label>
+                <textarea id="artDesc" placeholder="Describe the inspiration, mood, technique, or story behind this piece..."></textarea>
+              </div>
+
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="artDimensions">Size / Dimensions</label>
+                  <input type="text" id="artDimensions" placeholder="e.g. 24 × 36 in / 60 × 90 cm">
+                </div>
+                <div class="admin-form-group">
+                  <label for="artYear">Year Created</label>
+                  <input type="text" id="artYear" placeholder="2026">
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; padding-top: 0.5rem;">
+                <button type="submit" class="admin-btn admin-btn-primary">💾 Save Artwork</button>
+                <button type="button" class="admin-btn admin-btn-secondary" onclick="document.getElementById('addArtworkPanel').style.display='none'">Cancel</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Artwork List -->
+          <div id="adminArtworkList">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ========== INQUIRIES & MESSAGES TAB ========== -->
+        <section class="admin-tab" data-tab-id="inquiries">
+          <div class="admin-page-header">
+            <div>
+              <h1 class="admin-page-title">📬 Inquiries &amp; Messages</h1>
+              <p class="admin-page-sub">Messages and purchase requests sent from your portfolio website. Saved in the database.</p>
+            </div>
+            <button class="admin-btn admin-btn-secondary" onclick="renderAdminInquiries()">
+              🔄 Refresh
+            </button>
+          </div>
+
+          <!-- Inquiries List -->
+          <div id="adminInquiriesList">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ========== SOCIAL LINKS TAB ========== -->
+        <section class="admin-tab" data-tab-id="social">
+          <div class="admin-page-header">
+            <div>
+              <h1 class="admin-page-title">🔗 Social Media Links</h1>
+              <p class="admin-page-sub">Update your social media profiles. Changes appear on your portfolio instantly.</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="admin-btn admin-btn-secondary" onclick="toggleAddPlatform()">＋ Add New Platform</button>
+              <button class="admin-btn admin-btn-primary" onclick="saveSocialLinksBtn()">💾 Saved Automatically</button>
+            </div>
+          </div>
+
+          <div class="admin-tip">
+            💡 <strong>How to get your profile link:</strong> Open Instagram / YouTube on your phone → tap your profile → tap the three dots (...) → tap "Copy Link" → paste it below.
+          </div>
+
+          <!-- Add New Platform Panel -->
+          <div class="add-panel" id="addPlatformPanel">
+            <h3>Add a New Platform</h3>
+            <form id="newPlatformForm">
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="newPlatformName">Platform Name *</label>
+                  <input type="text" id="newPlatformName" placeholder="e.g. TikTok, Behance, LinkedIn" required>
+                </div>
+                <div class="admin-form-group">
+                  <label for="newPlatformHandle">Your Username / Handle</label>
+                  <input type="text" id="newPlatformHandle" placeholder="e.g. @unfiltered_vaniii">
+                </div>
+              </div>
+              <div class="admin-form-group">
+                <label for="newPlatformUrl">Your Profile URL *</label>
+                <input type="url" id="newPlatformUrl" placeholder="https://www.tiktok.com/@your_username" required>
+              </div>
+              <div class="admin-form-group" style="max-width: 200px;">
+                <label for="newPlatformColor">Brand Colour</label>
+                <input type="color" id="newPlatformColor" value="#888888" style="height: 42px; padding: 4px;">
+              </div>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; padding-top: 0.5rem;">
+                <button type="submit" class="admin-btn admin-btn-primary">＋ Add Platform</button>
+                <button type="button" class="admin-btn admin-btn-secondary" onclick="toggleAddPlatform()">Cancel</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Social Links List -->
+          <div style="margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--admin-text);">📱 Active &amp; Available Platforms</h3>
+          </div>
+          <div id="adminSocialList" class="admin-social-grid">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ========== VIDEOS TAB ========== -->
+        <section class="admin-tab" data-tab-id="videos">
+          <div class="admin-page-header">
+            <div>
+              <h1 class="admin-page-title">🎬 Studio Videos</h1>
+              <p class="admin-page-sub">Upload video files directly from your desktop/phone, or add YouTube links &amp; channel videos.</p>
+            </div>
+          </div>
+
+          <!-- Add Video Card -->
+          <div class="admin-card">
+            <h3>➕ Add a New Video</h3>
+            
+            <!-- Dual Mode Toggle -->
+            <div class="video-type-switcher">
+              <button type="button" id="vmodeUploadBtn" class="video-type-btn active" onclick="switchVideoMode('upload')">
+                📁 Upload Video File (Desktop / Phone)
+              </button>
+              <button type="button" id="vmodeLinkBtn" class="video-type-btn" onclick="switchVideoMode('link')">
+                🔗 YouTube / Social Video Link
+              </button>
+            </div>
+
+            <form id="adminVideoForm">
+              <input type="hidden" id="adminVideoSourceType" value="upload">
+              <input type="hidden" id="adminUploadedVideoUrl" value="">
+
+              <!-- Mode 1: Direct Video File Upload -->
+              <div id="videoUploadModeGroup" class="admin-form-group">
+                <label>Video File (MP4, MOV, WebM up to 250MB) *</label>
+                <input type="file" id="adminVideoFileInput" accept="video/mp4,video/quicktime,video/webm,video/*" style="display:none;" onchange="handleAdminVideoFileSelect(event)">
+                
+                <div class="admin-upload-zone" id="videoDropZone" onclick="document.getElementById('adminVideoFileInput').click()">
+                  <span class="upload-zone-icon">🎬</span>
+                  <div class="upload-zone-title" id="videoUploadTitleText">Choose Video File from Desktop or Phone</div>
+                  <div class="upload-zone-sub" id="videoUploadSubText">Tap or click to select your video file (MP4, MOV, WebM)</div>
+                </div>
+
+                <div class="admin-preview-box" id="adminVideoPreviewBox" style="display:none; margin-top:0.75rem;">
+                  <video id="adminVideoFilePlayer" controls style="width:100%; max-height:240px; background:#000;"></video>
+                  <button type="button" class="btn-remove-photo" onclick="removeAdminVideoFile()">✕ Change Video</button>
+                </div>
+              </div>
+
+              <!-- Mode 2: YouTube / Social Link -->
+              <div id="videoLinkModeGroup" class="admin-form-group" style="display:none;">
+                <label for="adminVideoUrl">YouTube or Social Video Link *</label>
+                <input type="url" id="adminVideoUrl" placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/... or channel video">
+                <p class="admin-form-help">Tip: You can paste any standard YouTube link, YouTube Shorts, or channel video link.</p>
+              </div>
+
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="adminVideoTitle">Video Title *</label>
+                  <input type="text" id="adminVideoTitle" placeholder="e.g. Studio Vlog — Oil Painting Process" required>
+                </div>
+                <div class="admin-form-group">
+                  <label for="adminVideoCategory">Category</label>
+                  <select id="adminVideoCategory">
+                    <option value="studio">Studio Vlog</option>
+                    <option value="process">Art Process</option>
+                    <option value="reels">Reel / Short</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="adminVideoDesc">Short Description (optional)</label>
+                <input type="text" id="adminVideoDesc" placeholder="A quick note about what this video shows...">
+              </div>
+
+              <button type="submit" class="admin-btn admin-btn-primary" id="adminVideoSubmitBtn">
+                🎬 Post Video to Portfolio
+              </button>
+            </form>
+          </div>
+
+          <!-- Video Grid -->
+          <div style="margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--admin-text);">📋 Posted Videos</h3>
+          </div>
+          <div id="adminVideoList" class="admin-video-grid">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ========== SETTINGS TAB ========== -->
+        <section class="admin-tab" data-tab-id="settings">
+          <div class="admin-page-header">
+            <div>
+              <h1 class="admin-page-title">⚙️ Settings</h1>
+              <p class="admin-page-sub">Manage your dashboard access and preferences.</p>
+            </div>
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-card">
+              <h3>🔑 Change Password</h3>
+              <form id="changePasswordForm">
+                <div class="admin-form-group">
+                  <label for="currentPw">Current Password</label>
+                  <input type="password" id="currentPw" placeholder="Your current password" autocomplete="current-password">
+                </div>
+                <div class="admin-form-group">
+                  <label for="newPw">New Password</label>
+                  <input type="password" id="newPw" placeholder="Choose a new password" autocomplete="new-password">
+                </div>
+                <div class="admin-form-group">
+                  <label for="confirmPw">Confirm New Password</label>
+                  <input type="password" id="confirmPw" placeholder="Type new password again" autocomplete="new-password">
+                </div>
+                <button type="submit" class="admin-btn admin-btn-primary">🔒 Change Password</button>
+              </form>
+            </div>
+
+            <div class="admin-card">
+              <h3>ℹ️ About This Dashboard</h3>
+              <p style="font-size: 0.95rem; color: var(--admin-text-muted); line-height: 1.7;">
+                This is your personal portfolio management panel. Everything you manage here — artworks, social links, studio videos, and profile photo — syncs directly to your public portfolio and database.
+                <br><br>
+                All information is saved securely in your server's database so multiple people and devices can view and interact at the same time.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Profile Photo Management Modal (Opened by clicking top avatar)
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="profilePhotoModal" role="dialog" aria-modal="true" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 99999; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="admin-card" style="max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; border-radius: 16px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.35);">
+      <button type="button" onclick="window.closeProfilePhotoModal()" style="position: absolute; top: 1rem; right: 1rem; background: #F2F2F7; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">✕</button>
+
+      <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.35rem;">👤 Profile Photo</h2>
+      <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1.5rem;">
+        Change your profile photo displayed across your entire portfolio and dashboard.
+      </p>
+
+      <!-- Active Photo Box -->
+      <div style="display: flex; align-items: center; gap: 1.5rem; background: #F9F9FB; border: 1.5px solid var(--admin-border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <img id="adminCurrentProfileImg" src="assests/ppf.png" alt="Current avatar" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--admin-accent); background: #eee; flex-shrink: 0;">
+        <div style="flex: 1; min-width: 200px;">
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">Active Profile Photo</h4>
+          <p style="font-size: 0.8rem; color: var(--admin-text-muted); margin-bottom: 0.85rem;">Select any picture from your desktop or phone.</p>
+          
+          <input type="file" id="profilePhotoFileInput" accept="image/*" style="display:none;" onchange="handleProfilePhotoFileSelect(event)">
+          <button type="button" class="admin-btn admin-btn-primary admin-btn-sm" onclick="document.getElementById('profilePhotoFileInput').click()">
+            📸 Select New Photo
+          </button>
+        </div>
+      </div>
+
+      <!-- History of Old Photos -->
+      <div>
+        <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; border: none; padding: 0;">🕒 Previous Photos</h3>
+        <p style="font-size: 0.8rem; color: var(--admin-text-muted); margin-bottom: 1rem;">Past photos are saved in database. Tap "✓ Set as Active" to switch back anytime.</p>
+        <div id="adminProfileHistoryList" class="profile-history-grid" style="grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));">
+          <!-- Rendered by admin.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: shared data layer + video system + admin logic -->
+  <script src="js/videos-data.js"></script>
+  <script src="js/site-data.js"></script>
+  <script src="js/admin.js"></script>
+
+  <script>
+    // Helper for Add Platform panel toggle
+    function toggleAddPlatform() {
+      const p = document.getElementById('addPlatformPanel');
+      p.style.display = p.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>

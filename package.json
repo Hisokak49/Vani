@@ -1,0 +1,22 @@
+{
+  "name": "vaniii",
+  "version": "1.0.0",
+  "description": "A fast, responsive, image-forward portfolio website designed and built for visual artist **Vani Karaikta** ([@unfiltered_vaniii](https://www.instagram.com/unfiltered_vaniii/?hl=en)).",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node server/test-suite.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "multer": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=22.x"
+  }
+}

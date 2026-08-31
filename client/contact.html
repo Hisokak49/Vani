@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Commissions — Vani Karaikta</title>
+  <meta name="description" content="Inquire about commissioning custom paintings, buying original art, or general inquiries with visual artist Vani Karaikta.">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Vani Karaikta Home">
+        <span class="brand-monogram">V</span>
+        <div class="brand-name">
+          <span>Vani Karaikta</span>
+          <span class="artist-title">Visual Artist</span>
+        </div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html#home" class="nav-link">Home</a></li>
+          <li><a href="index.html#social-hub" class="nav-link">Social Media</a></li>
+          <li><a href="index.html#videos" class="nav-link">Videos & Reels</a></li>
+          <li><a href="work.html" class="nav-link">Artwork</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Follow @unfiltered_vaniii</a>
+        </div>
+      </nav>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#home" class="mobile-nav-link">Home</a></li>
+      <li><a href="index.html#social-hub" class="mobile-nav-link">Social Media</a></li>
+      <li><a href="index.html#videos" class="mobile-nav-link">Videos & Reels</a></li>
+      <li><a href="work.html" class="mobile-nav-link">Artwork</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Get in touch directly:</p>
+      <a href="mailto:vanikaraikta@gmail.com?subject=Inquiry%20for%20Vani%20Karaikta&body=Hi%20Vani,%0A%0AI%20am%20reaching%20out%20regarding..." class="btn-link">vanikaraikta@gmail.com →</a>
+      <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-link">@unfiltered_vaniii on Instagram →</a>
+    </div>
+  </div>
+
+  <main style="padding-top: var(--header-height);">
+
+    <!-- Contact Header -->
+    <section class="section">
+      <div class="container">
+        
+        <div style="max-width: 780px; margin: 0 auto 3.5rem; text-align: center;">
+          <span class="section-eyebrow">Direct Contact & Booking</span>
+          <h1 style="font-size: clamp(2.5rem, 5.5vw, 4rem); margin-bottom: 1rem;">Let's Create Together</h1>
+          <p style="font-size: 1.15rem; color: var(--text-secondary);">
+            Whether you want to acquire an existing original, commission a bespoke piece for your interior, or discuss an exhibition collaboration, please fill out the form below or write directly.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: flex-start;">
+          
+          <!-- Inquiry Form -->
+          <div style="background-color: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: clamp(1.75rem, 4vw, 3rem); box-shadow: var(--shadow-sm);">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Send an Inquiry</h2>
+            
+            <form id="commissionForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="clientName">Your Name *</label>
+                  <input type="text" id="clientName" name="name" class="form-control" placeholder="e.g. Eleanor Vance" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="clientEmail">Email Address *</label>
+                  <input type="email" id="clientEmail" name="email" class="form-control" placeholder="e.g. eleanor@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="artMedium">Interested Medium</label>
+                  <select id="artMedium" name="medium" class="form-control">
+                    <option value="Oil on Belgian Linen">Oil on Belgian Linen</option>
+                    <option value="Mixed Media & Mineral Pigment">Mixed Media & Mineral Pigment</option>
+                    <option value="Study on Deckle Paper">Study on Deckle Paper</option>
+                    <option value="Archival Fine Art Print">Archival Fine Art Print</option>
+                    <option value="Other / General Question">Other / General Question</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="artDimensions">Desired Dimensions (Approx.)</label>
+                  <input type="text" id="artDimensions" name="dimensions" class="form-control" placeholder="e.g. 36 × 48 in / Flexible">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="artBudget">Budget Range (Optional)</label>
+                <select id="artBudget" name="budget" class="form-control">
+                  <option value="Flexible / Advice Needed">Flexible / Advice Needed</option>
+                  <option value="Under $1,000">Under $1,000</option>
+                  <option value="$1,000 – $2,500">$1,000 – $2,500</option>
+                  <option value="$2,500 – $5,000">$2,500 – $5,000</option>
+                  <option value="$5,000+">$5,000+</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="artMessage">Project Vision or Questions *</label>
+                <textarea id="artMessage" name="message" class="form-control" placeholder="Tell us about the space, preferred mood/palette, or any specific pieces from the gallery that inspired you..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                Submit Inquiry to Vani
+              </button>
+            </form>
+          </div>
+
+          <!-- Direct Info Column -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            
+            <div style="background-color: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 2rem;">
+              <span class="section-eyebrow">Studio Channels</span>
+              <h3 style="margin-bottom: 1.25rem;">Direct Contact</h3>
+
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">DIRECT EMAIL</div>
+                  <a href="mailto:vanikaraikta@gmail.com?subject=Studio%20Inquiry%20for%20Vani%20Karaikta&body=Dear%20Vani,%0A%0AI%20am%20reaching%20out%20to%20you%20regarding..." class="btn-link" style="font-size: 1.05rem; word-break: break-all;">
+                    vanikaraikta@gmail.com →
+                  </a>
+                </div>
+
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">INSTAGRAM</div>
+                  <a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-link" style="font-size: 1.05rem;">
+                    @unfiltered_vaniii
+                  </a>
+                </div>
+
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">STUDIO LOCATION</div>
+                  <p style="font-size: 0.95rem; margin-top: 0.25rem; color: var(--text-primary);">
+                    Available worldwide. Original artworks custom-crated and insured for global air freight.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick FAQ -->
+            <div style="background-color: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 2rem;">
+              <span class="section-eyebrow">Common Questions</span>
+              <h3 style="margin-bottom: 1rem;">Commission FAQ</h3>
+
+              <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.92rem;">
+                <div>
+                  <strong>How long does a commission take?</strong>
+                  <p style="font-size: 0.88rem; margin-top: 0.2rem;">Usually 4–6 weeks from initial concept approval to final varnish and drying.</p>
+                </div>
+                <div>
+                  <strong>How is payment handled?</strong>
+                  <p style="font-size: 0.88rem; margin-top: 0.2rem;">50% upon contract signing & sketch confirmation, and remaining 50% upon completion prior to insured dispatch.</p>
+                </div>
+                <div>
+                  <strong>Do pieces come framed?</strong>
+                  <p style="font-size: 0.88rem; margin-top: 0.2rem;">All canvases come ready to hang with finished edges. Bespoke raw oak or walnut floating frames can be added upon request.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <span class="brand-monogram" style="background-color: var(--accent);">V</span>
+            <span class="footer-brand-title">Vani Karaikta</span>
+          </div>
+          <p style="font-size: 0.95rem; max-width: 320px;">
+            Visual artist creating evocative original paintings, tactile mineral studies, and custom commissions worldwide.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#social-hub">Social Media</a></li>
+            <li><a href="index.html#videos">Videos &amp; Reels</a></li>
+            <li><a href="index.html#artwork">Artwork</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/unfiltered_vaniii/?hl=en" target="_blank" rel="noopener noreferrer">Instagram (@unfiltered_vaniii)</a></li>
+            <li><a href="mailto:vanikaraikta@gmail.com">vanikaraikta@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Studio Newsletter</div>
+          <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">Receive private previews of new series before public release.</p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email address" class="footer-newsletter-input" required>
+            <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.25rem;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Vani Karaikta. All rights reserved.</div>
+        <a href="mailto:vanikaraikta@gmail.com" style="color: var(--accent-gold);">vanikaraikta@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Email Launcher Modal -->
+  <div class="video-modal-backdrop" id="emailLauncherModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="email-modal-box">
+      <button class="modal-close-btn" onclick="window.closeEmailLauncher()" aria-label="Close email options">✕</button>
+      
+      <div style="margin-bottom: 1.25rem;">
+        <span class="section-eyebrow" style="margin-bottom: 0.25rem;">Send Message</span>
+        <h2 id="emailModalTitle" style="font-size: 1.7rem;">Connect with Vani</h2>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          Choose how you'd like to send your message to <strong>vanikaraikta@gmail.com</strong>:
+        </p>
+      </div>
+
+      <div class="email-draft-preview" id="emailModalPreview"></div>
+
+      <div class="email-options-list">
+        <a id="emailModalGmail" href="#" target="_blank" rel="noopener noreferrer" class="btn-email-option gmail-primary">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            <span>Compose in Gmail (Browser)</span>
+          </div>
+          <span>Open →</span>
+        </a>
+
+        <a id="emailModalDefault" href="#" class="btn-email-option">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Open in Mail App (Outlook / Apple Mail)</span>
+          </div>
+          <span>Open →</span>
+        </a>
+
+        <button type="button" id="emailModalCopy" class="btn-email-option" style="background-color: var(--bg-secondary);">
+          <div class="option-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Email Address (vanikaraikta@gmail.com)</span>
+          </div>
+          <span>Copy 📋</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/videos-data.js"></script>
+  <script src="js/site-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
