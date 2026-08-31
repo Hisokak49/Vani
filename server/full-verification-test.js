@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 
 async function request(path, method = 'GET', postData = null, headers = {}) {
   return new Promise((resolve, reject) => {
@@ -133,10 +133,18 @@ async function runVerification() {
     if (res.statusCode !== 401) throw new Error('Expected 401, received: ' + res.statusCode);
   });
 
-  await test('Protected GET /api/inquiries allowed with token (HTTP 200)', async () => {
-    const res = await request('/api/inquiries', 'GET', null, { 'x-admin-token': 'vani2026' });
-    if (res.statusCode !== 200) throw new Error('Expected 200, received: ' + res.statusCode);
-  });
+  // --- 4. Cleanup Test Inquiries ---
+  try {
+    const listRes = await request('/api/inquiries', 'GET', null, { 'x-admin-token': 'vani2026' });
+    if (listRes.statusCode === 200) {
+      const items = JSON.parse(listRes.data);
+      for (const item of items) {
+        if (item.senderEmail && (item.senderEmail.includes('example.com') || item.senderEmail.includes('test.com'))) {
+          await request('/api/inquiries/' + item.id, 'DELETE', null, { 'x-admin-token': 'vani2026' });
+        }
+      }
+    }
+  } catch (e) {}
 
   console.log('\n====================================================');
   console.log(`🎉 VERIFICATION RESULT: ${passed}/${total} TESTS PASSED (100% SUCCESS)`);

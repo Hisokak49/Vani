@@ -295,11 +295,14 @@ async function deleteInquiry(id) {
   localStorage.setItem(INQUIRIES_KEY, JSON.stringify(localList));
 
   try {
-    await fetch(`${API_BASE}/api/inquiries/${id}`, {
+    const res = await fetch(`${API_BASE}/api/inquiries/${id}`, {
       method: 'DELETE',
       headers: getAdminAuthHeaders()
     });
-  } catch (err) {}
+    return await res.json();
+  } catch (err) {
+    console.warn('Backend delete inquiry skipped:', err);
+  }
 }
 
 // ============================================================

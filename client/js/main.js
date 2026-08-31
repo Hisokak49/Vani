@@ -345,8 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Intercept all links targeting vanikaraikta@gmail.com for seamless cross-browser experience
+  // Intercept external links targeting vanikaraikta@gmail.com to open the Email Launcher Dialog
   document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    if (link.id === 'emailModalDefault' || link.closest('#emailLauncherModal')) {
+      return;
+    }
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const href = link.getAttribute('href');

@@ -381,7 +381,7 @@ async function renderAdminInquiries() {
           <div>
             <div class="inquiry-sender-name">
               <span>👤 ${escHtml(inq.senderName)}</span>
-              ${isNew ? '<span class="admin-badge badge-sale">NEW</span>' : '<span class="admin-badge" style="background:#E5E5EA;color:#666;">READ</span>'}
+              ${isNew ? '<span class="admin-badge" style="background:rgba(194,94,62,0.12);color:#C25E3E;border:1px solid rgba(194,94,62,0.3);">NEW</span>' : '<span class="admin-badge" style="background:rgba(142,142,147,0.12);color:#636366;border:1px solid rgba(142,142,147,0.25);">READ</span>'}
             </div>
             <a href="mailto:${escHtml(inq.senderEmail)}" class="inquiry-sender-email">✉️ ${escHtml(inq.senderEmail)}</a>
           </div>
@@ -429,7 +429,7 @@ async function renderAdminInquiries() {
 async function markInquiryRead(id) {
   if (typeof updateInquiryStatus === 'function') {
     await updateInquiryStatus(id, 'read');
-    renderAdminInquiries();
+    await renderAdminInquiries();
     adminToast('Inquiry marked as read.');
   }
 }
@@ -438,9 +438,9 @@ async function deleteInquiryBtn(id) {
   if (confirm('Delete this inquiry?')) {
     if (typeof deleteInquiry === 'function') {
       await deleteInquiry(id);
-      renderAdminInquiries();
-      adminToast('Inquiry deleted.', 'info');
     }
+    await renderAdminInquiries();
+    adminToast('Inquiry deleted.', 'info');
   }
 }
 

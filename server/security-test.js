@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 
 async function request(path, method = 'GET', postData = null, headers = {}) {
   return new Promise((resolve, reject) => {
@@ -127,6 +127,19 @@ async function runSecurityTests() {
     }
     if (!rateLimited) throw new Error('Rate limiter did not trigger after multiple failed login attempts');
   });
+
+  // Cleanup test inquiries
+  try {
+    const listRes = await request('/api/inquiries', 'GET', null, { 'x-admin-token': 'vani2026' });
+    if (listRes.statusCode === 200) {
+      const items = JSON.parse(listRes.data);
+      for (const item of items) {
+        if (item.senderEmail && (item.senderEmail.includes('example.com') || item.senderEmail.includes('test.com') || item.senderEmail.includes('hacker'))) {
+          await request('/api/inquiries/' + item.id, 'DELETE', null, { 'x-admin-token': 'vani2026' });
+        }
+      }
+    }
+  } catch (e) {}
 
   console.log('\n====================================================');
   console.log(`🛡️  SECURITY TEST SUMMARY: ${passed}/${total} PASSED (100% SECURE)`);
