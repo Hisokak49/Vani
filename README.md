@@ -48,7 +48,7 @@ Then visit `http://localhost:8000`.
 
 ## 🖼️ How to Replace Artwork Placeholders
 
-All artwork entries and metadata are managed cleanly in [`js/gallery-data.js`](file:///c:/Users/amit/OneDrive/Documents/Desktop/vaniii/js/gallery-data.js).
+All artwork entries and metadata are managed cleanly in [`js/gallery-data.js`](js/gallery-data.js).
 
 To replace placeholder blocks with your real photos:
 1. Save your photos in the `assests/` folder (e.g. `assests/artwork1.jpg`).
