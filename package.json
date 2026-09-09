@@ -7,7 +7,14 @@
     "start": "node server/server.js",
     "test": "node server/test-suite.js"
   },
-  "keywords": [],
+  "keywords": [
+    "portfolio",
+    "artist-portfolio",
+    "gallery",
+    "visual-artist",
+    "express",
+    "node.js"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
