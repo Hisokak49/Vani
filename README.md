@@ -47,6 +47,26 @@ Then visit `http://localhost:8000` (or the URL printed by `npx serve`).
 
 ---
 
+## 🧪 Backend API Tests
+
+The repository includes a Node-based API smoke-test suite at `server/test-suite.js` and exposes it through `npm test`.
+
+The authenticated tests intentionally **do not contain a real admin password/token**. Set the token for your local environment before running the suite:
+
+```bash
+VANI_ADMIN_TOKEN="your-local-admin-token" npm test
+```
+
+On Windows PowerShell:
+
+```powershell
+$env:VANI_ADMIN_TOKEN="your-local-admin-token"; npm test
+```
+
+The inquiry test uses a unique email for each run and deletes the test inquiry after verification, so repeated test runs do not intentionally accumulate test records.
+
+---
+
 ## 🖼️ How to Replace Artwork Placeholders
 
 Artwork entries and metadata are managed in the client-side JavaScript under [`client/js/`](client/js/).
