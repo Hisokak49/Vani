@@ -71,7 +71,17 @@ async function runTests() {
     if (res.statusCode !== 200) throw new Error('Status ' + res.statusCode);
   });
 
-  // 4. Test Buy Inquiry Submission
+  // 4. Verify protected inquiry listing rejects an invalid admin token.
+  await check('GET /api/inquiries rejects an invalid admin token', async () => {
+    const res = await testEndpoint('/api/inquiries', 'GET', null, { 'x-admin-token': 'invalid-test-token' });
+    if (res.statusCode !== 401) throw new Error('Expected 401, received ' + res.statusCode);
+    const json = JSON.parse(res.data);
+    if (!json.error || !json.error.includes('authentication token required')) {
+      throw new Error('Unexpected authentication error response');
+    }
+  });
+
+  // 5. Test Buy Inquiry Submission
   const testEmail = `collector-test-${Date.now()}@example.com`;
   let createdInquiryId = null;
   await check('POST /api/inquiries records artwork buy inquiry', async () => {
@@ -93,7 +103,7 @@ async function runTests() {
     createdInquiryId = json.inquiry.id;
   });
 
-  // 5. Verify Inquiry appears in Inquiries list
+  // 6. Verify Inquiry appears in Inquiries list
   await check('GET /api/inquiries returns recorded inquiries', async () => {
     if (!createdInquiryId) throw new Error('Create inquiry test did not return an id');
     const res = await testEndpoint('/api/inquiries');
@@ -104,14 +114,14 @@ async function runTests() {
     if (!found) throw new Error('Test inquiry not found in database');
   });
 
-  // 6. Clean up the test inquiry so automated runs do not pollute production data.
+  // 7. Clean up the test inquiry so automated runs do not pollute production data.
   await check('DELETE /api/inquiries removes the test inquiry', async () => {
     if (!createdInquiryId) throw new Error('No test inquiry id available for cleanup');
     const res = await testEndpoint(`/api/inquiries/${encodeURIComponent(createdInquiryId)}`, 'DELETE');
     if (res.statusCode !== 200) throw new Error('Status ' + res.statusCode + ' data: ' + res.data);
   });
 
-  // 7. Test Static Pages
+  // 8. Test Static Pages
   await check('GET /index.html returns 200', async () => {
     const res = await testEndpoint('/index.html');
     if (res.statusCode !== 200) throw new Error('Status ' + res.statusCode);
