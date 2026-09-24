@@ -81,7 +81,18 @@ async function runTests() {
     }
   });
 
-  // 5. Test Buy Inquiry Submission
+  // 5. Verify the documented Bearer authentication path remains functional.
+  await check('GET /api/inquiries accepts a valid Bearer admin token', async () => {
+    const res = await testEndpoint('/api/inquiries', 'GET', null, {
+      'x-admin-token': '',
+      Authorization: `Bearer ${ADMIN_TOKEN}`
+    });
+    if (res.statusCode !== 200) throw new Error('Expected 200, received ' + res.statusCode);
+    const json = JSON.parse(res.data);
+    if (!Array.isArray(json)) throw new Error('Inquiry response is not an array');
+  });
+
+  // 6. Test Buy Inquiry Submission
   const testEmail = `collector-test-${Date.now()}@example.com`;
   let createdInquiryId = null;
   await check('POST /api/inquiries records artwork buy inquiry', async () => {
@@ -103,7 +114,7 @@ async function runTests() {
     createdInquiryId = json.inquiry.id;
   });
 
-  // 6. Verify Inquiry appears in Inquiries list
+  // 7. Verify Inquiry appears in Inquiries list
   await check('GET /api/inquiries returns recorded inquiries', async () => {
     if (!createdInquiryId) throw new Error('Create inquiry test did not return an id');
     const res = await testEndpoint('/api/inquiries');
@@ -114,14 +125,14 @@ async function runTests() {
     if (!found) throw new Error('Test inquiry not found in database');
   });
 
-  // 7. Clean up the test inquiry so automated runs do not pollute production data.
+  // 8. Clean up the test inquiry so automated runs do not pollute production data.
   await check('DELETE /api/inquiries removes the test inquiry', async () => {
     if (!createdInquiryId) throw new Error('No test inquiry id available for cleanup');
     const res = await testEndpoint(`/api/inquiries/${encodeURIComponent(createdInquiryId)}`, 'DELETE');
     if (res.statusCode !== 200) throw new Error('Status ' + res.statusCode + ' data: ' + res.data);
   });
 
-  // 8. Test Static Pages
+  // 9. Test Static Pages
   await check('GET /index.html returns 200', async () => {
     const res = await testEndpoint('/index.html');
     if (res.statusCode !== 200) throw new Error('Status ' + res.statusCode);
