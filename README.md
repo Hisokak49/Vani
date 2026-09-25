@@ -35,6 +35,7 @@ You can serve the repository locally with Python or Node:
 
 ```bash
 # Python 3
+cd client
 python -m http.server 8000
 
 # or with npx
